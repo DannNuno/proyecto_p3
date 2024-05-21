@@ -1,23 +1,26 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "pollo.hpp"
 using namespace sf;
 using namespace std;
 int main()
 {
     RenderWindow window(VideoMode(1920, 1080), "SFML works!");
     window.setFramerateLimit(60);
-    Texture polloTexture;
+    Texture mapaTexture;
 
-    if(!polloTexture.loadFromFile("assets/pollito.png"))
+    Pollito pollo;
+
+    if(!mapaTexture.loadFromFile("assets/mapa.png"))
     {
         cout << "Error al cargar imagen" << endl;
     }
-    polloTexture.setRepeated(true);
+    mapaTexture.setRepeated(true);
 
-    Sprite pollo;
-    pollo.setTexture(polloTexture);
-    pollo.setScale(10,10);
-    int opacidad = 0;
+    Sprite mapa;
+
+    mapa.setTexture(mapaTexture);
+    mapa.setScale(10,10);
     
     while (window.isOpen())
     {
@@ -26,13 +29,16 @@ int main()
         {
             if (event.type == Event::Closed)
                 window.close();
-        }
 
+            
+        }
+        
         window.clear(Color(51,51,51));
-        window.draw(pollo);
-        pollo.setColor(Color(255,255,255, opacidad % 256));
+        pollo.update();
+
+        window.draw(mapa);
+        window.draw(pollo.sprite_pollo);
         window.display();
-        opacidad++;
     }
 
     return 0;
