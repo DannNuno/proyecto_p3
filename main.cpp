@@ -39,11 +39,11 @@ int main()
 
         float deltaTime = reloj.restart().asSeconds();
         pollo.update(deltaTime);
-        rana.update(deltaTime);
+        rana.update(deltaTime, pollo.sprite_pollo, window);
         
         window.clear(Color(51,51,51));
 
-        window.draw(mapa);
+        //window.draw(mapa);
         window.draw(rana.sprite_rana);
         window.draw(pollo.sprite_pollo);
         window.display();

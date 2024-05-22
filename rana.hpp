@@ -10,6 +10,7 @@ class Rana{
     private:
     Texture ranaTexture;
     Texture ranaTexture_2;
+    Texture dialogo;
 
     vector<Texture> idleFrames;
     size_t currentFrame = 0;
@@ -18,8 +19,11 @@ class Rana{
 
     public:
     Sprite sprite_rana;
+    Sprite sprite_dialogo;
     Rana();
-    void update(float deltaTime);
+    void update(float deltaTime,Sprite sprite, RenderWindow &window);
+    float calcular_dist(Vector2f s1, Vector2f s2);
+    void hablar(RenderWindow &window);
 
 };
 
