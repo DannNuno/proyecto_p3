@@ -12,8 +12,14 @@ class Pollito{
     Texture polloTexture_2;
     Texture polloTexture_3;
     Texture polloTexture_4;
+    Texture polloTexture_5;
+    Texture polloTexture_6;
+    Texture polloTexture_7;
+    Texture polloTexture_8;
     vector<Texture> idleFrames_der; //vector de texturas idle
     vector<Texture> idleFrames_izq;
+    vector<Texture> moviendose_der;
+    vector<Texture> moviendose_izq;
     size_t currentFrame = 0; // Frame en el que se encuentra
     float frameTime = 0.5f; // Tiempo por cuadro en segundos
     float currentTime = 0.f; // saber cuando cambiar de cuadro
@@ -30,9 +36,11 @@ class Pollito{
     void mover();
     void correr();
     void update(float deltaTime);
-    void idle_der(float deltaTime);
-    void idle_izq(float deltaTime);
     // deltaTime se utiliza para que la animacion ocurra independientemente de los FPS, es el tiempo transcurrido desde el ultimo cuadro
+    void idle_der();
+    void idle_izq();
+    void mover_der();
+    void mover_izq();
 
 };
 
