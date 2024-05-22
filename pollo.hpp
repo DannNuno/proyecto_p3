@@ -16,13 +16,16 @@ class Pollito{
     Texture polloTexture_6;
     Texture polloTexture_7;
     Texture polloTexture_8;
+
     vector<Texture> idleFrames_der; //vector de texturas idle
     vector<Texture> idleFrames_izq;
     vector<Texture> moviendose_der;
     vector<Texture> moviendose_izq;
+
     size_t currentFrame = 0; // Frame en el que se encuentra
     float frameTime = 0.5f; // Tiempo por cuadro en segundos
     float currentTime = 0.f; // saber cuando cambiar de cuadro
+    
     bool moviendose = false; // saber si el pollito esta idle o moviendose
     bool mirando_der = true; // saber si el pollito esta mirando a la izq o der
 
