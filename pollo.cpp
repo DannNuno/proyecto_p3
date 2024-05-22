@@ -23,11 +23,20 @@ Pollito::Pollito(){
     }
     this->polloTexture_3.setRepeated(true);
 
+    if(!this->polloTexture_4.loadFromFile("assets/pollito2_otrolado.png"))
+    {
+        cout << "Error al cargar imagen" << endl;
+    }
+    this->polloTexture_4.setRepeated(true);
+
     this->sprite_pollo.setTexture(this->polloTexture);
     this->sprite_pollo.setScale(6,6);
 
-    idleFrames.push_back(polloTexture);
-    idleFrames.push_back(polloTexture_3);
+    idleFrames_der.push_back(polloTexture);
+    idleFrames_der.push_back(polloTexture_3);
+
+    idleFrames_izq.push_back(polloTexture_2);
+    idleFrames_izq.push_back(polloTexture_4);
 }
 
 void Pollito::mover(){
@@ -50,6 +59,7 @@ void Pollito::update(float deltaTime){
         this->speed_y = 0;
         this->mover();
         this->moviendose = true;
+        this->mirando_der = true;
     }
 
     if(Keyboard::isKeyPressed(Keyboard::A)){
@@ -58,6 +68,7 @@ void Pollito::update(float deltaTime){
         this->speed_y = 0;
         this->mover();
         this->moviendose = true;
+        this->mirando_der = false;
     }
 
     if(Keyboard::isKeyPressed(Keyboard::W)){
@@ -78,21 +89,35 @@ void Pollito::update(float deltaTime){
         this->correr();
     }
 
-    if (moviendose){
-        mover();
+    if (this->moviendose){
+        this->mover();
     }
     else{
-        idle(deltaTime);
+        if(this->mirando_der){
+        this->idle_der(deltaTime);
+        }
+        else{
+            this->idle_izq(deltaTime);
+        }
     }
     //realiza la animacion idle si no se esta moviendo
 }
 
-void Pollito::idle(float deltaTime){
+void Pollito::idle_der(float deltaTime){
     currentTime += deltaTime;
     //acumular tiempo desde el ultimo cuadro
     if (currentTime >= frameTime) { //si current time supera el tiempo asignado a cada cuadro de la animacion
         currentTime = 0.f; //reinicio
-        currentFrame = (currentFrame + 1) % idleFrames.size(); //cambiar de frame
-        sprite_pollo.setTexture(idleFrames[currentFrame]); 
+        currentFrame = (currentFrame + 1) % idleFrames_der.size(); //cambiar de frame
+        sprite_pollo.setTexture(idleFrames_der[currentFrame]); 
+    }
+}
+
+void Pollito::idle_izq(float deltaTime){
+    currentTime += deltaTime;
+    if (currentTime >= frameTime) {
+        currentTime = 0.f;
+        currentFrame = (currentFrame + 1) % idleFrames_izq.size();
+        sprite_pollo.setTexture(idleFrames_izq[currentFrame]); 
     }
 }
