@@ -62,16 +62,12 @@ Pollito::Pollito(){
     idleFrames_izq.push_back(polloTexture_2);
     idleFrames_izq.push_back(polloTexture_4);
 
-    moviendose_der.push_back(polloTexture);
-    moviendose_der.push_back(polloTexture_3);
-    moviendose_der.push_back(polloTexture_7);
+    
     moviendose_der.push_back(polloTexture_5);
+    moviendose_der.push_back(polloTexture_7);
 
-
-    moviendose_izq.push_back(polloTexture_2);
-    moviendose_izq.push_back(polloTexture_4);
-    moviendose_izq.push_back(polloTexture_8);
     moviendose_izq.push_back(polloTexture_6);
+    moviendose_izq.push_back(polloTexture_8);
 }
 
 void Pollito::mover(){
@@ -91,7 +87,6 @@ void Pollito::update(float deltaTime){
     this->moviendose = false;
 
     if(Keyboard::isKeyPressed(Keyboard::D)){
-        this->sprite_pollo.setTexture(this->polloTexture);
         this->speed_x = 1;
         this->speed_y = 0;
         this->mover();
@@ -100,7 +95,6 @@ void Pollito::update(float deltaTime){
     }
 
     if(Keyboard::isKeyPressed(Keyboard::A)){
-        this->sprite_pollo.setTexture(this->polloTexture_2);
         this->speed_x = -1;
         this->speed_y = 0;
         this->mover();
@@ -130,9 +124,11 @@ void Pollito::update(float deltaTime){
         this->mover();
         if(this->mirando_der){
             this->mover_der();
+            cout << "derecha" << endl;
         }
         else{
             this->mover_izq();
+            cout << "izquierda" << endl;
         }
     }
     else{
