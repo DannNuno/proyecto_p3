@@ -34,7 +34,9 @@ void Rana::update(float deltaTime, Sprite sprite, RenderWindow &window){
     }
     if(calcular_dist(sprite.getPosition(), this->sprite_rana.getPosition()) <= 150){
         cout << "dialogo" << endl;
-        hablar(window);
+        hablar();
+    } else {
+        hablando = false;
     }
 }
 
@@ -44,7 +46,7 @@ float Rana::calcular_dist(Vector2f s1, Vector2f s2){
     return sqrt(dist_x * dist_x + dist_y * dist_y);
 }
 
-void Rana::hablar(RenderWindow &window){
+void Rana::hablar(){
     if(!dialogo.loadFromFile("assets/hola.png"))
     {
         cout << "Error al cargar imagen" << endl;
@@ -53,6 +55,12 @@ void Rana::hablar(RenderWindow &window){
 
     this->sprite_dialogo.setTexture(dialogo);
     this->sprite_dialogo.setScale(10,10);
+    hablando = true;
 
-    window.draw(sprite_dialogo);
+}
+
+void Rana::drawDialog(RenderWindow &window) {
+    if (hablando){
+        window.draw(sprite_dialogo);
+    }
 }

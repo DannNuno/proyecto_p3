@@ -43,9 +43,12 @@ int main()
         
         window.clear(Color(51,51,51));
 
-        //window.draw(mapa);
+        window.draw(mapa);
         window.draw(rana.sprite_rana);
         window.draw(pollo.sprite_pollo);
+
+        rana.drawDialog(window);
+
         window.display();
     }
 
