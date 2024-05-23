@@ -32,7 +32,8 @@ void Rana::update(float deltaTime, Sprite sprite, RenderWindow &window){
         currentFrame = (currentFrame + 1) % idleFrames.size();
         sprite_rana.setTexture(idleFrames[currentFrame]); 
     }
-    if(calcular_dist(sprite.getPosition(), this->sprite_rana.getPosition()) <= 10){
+    if(calcular_dist(sprite.getPosition(), this->sprite_rana.getPosition()) <= 150){
+        cout << "dialogo" << endl;
         hablar(window);
     }
 }
