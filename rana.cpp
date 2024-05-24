@@ -6,32 +6,42 @@ using namespace sf;
 using namespace std;
 
 Rana::Rana(){
-   if(!ranaTexture.loadFromFile("assets/rana.png"))
+   if(!this->ranaTexture.loadFromFile("assets/rana.png"))
     {
         cout << "Error al cargar imagen" << endl;
     }
-    ranaTexture.setRepeated(true);
+    this->ranaTexture.setRepeated(true);
 
-    if(!ranaTexture_2.loadFromFile("assets/rana2.png"))
+    if(!this->ranaTexture_2.loadFromFile("assets/rana2.png"))
     {
         cout << "Error al cargar imagen" << endl;
     }
-    ranaTexture_2.setRepeated(true);
+    this->ranaTexture_2.setRepeated(true);
 
-    if(!dialogo.loadFromFile("assets/hola.png"))
+    if(!this->dialogo.loadFromFile("assets/hola.png"))
     {
         cout << "Error al cargar imagen" << endl;
     }
-    dialogo.setRepeated(true);
+    this->dialogo.setRepeated(true);
 
+    if(!this->dialogo_2.loadFromFile("assets/soy_rana.png"))
+    {
+        cout << "Error al cargar imagen" << endl;
+    }
+    this->dialogo_2.setRepeated(true);
+
+    dialogos_index = 0;
     this->sprite_dialogo.setTexture(dialogo);
     this->sprite_dialogo.setScale(10,10);
 
     this->sprite_rana.setTexture(ranaTexture);
     this->sprite_rana.setScale(6,6);
 
-    idleFrames.push_back(ranaTexture);
-    idleFrames.push_back(ranaTexture_2);
+    this->idleFrames.push_back(ranaTexture);
+    this->idleFrames.push_back(ranaTexture_2);
+
+    this->dialogos.push_back(dialogo);
+    this->dialogos.push_back(dialogo_2);
 }
 
 void Rana::update(float deltaTime, Sprite sprite, RenderWindow &window){
@@ -42,12 +52,21 @@ void Rana::update(float deltaTime, Sprite sprite, RenderWindow &window){
         sprite_rana.setTexture(idleFrames[currentFrame]); 
     }
     if(calcular_dist(sprite.getPosition(), this->sprite_rana.getPosition()) <= 150){
-        if(Keyboard::isKeyPressed(Keyboard::E)){
-        cout << "dialogo" << endl;
-        hablar();
+        //hay errores al hablar
+        if(Keyboard::isKeyPressed(Keyboard::Enter)){
+            if(dialogos_index < dialogos.size()){
+                cout << "dialogo num." << dialogos_index << endl;
+                hablar(dialogos_index);
+                dialogos_index = (dialogos_index + 1) % dialogos.size();
+            } else {
+                dialogos_index = 0;
+                hablando = false;
+                cout << "no hablando" << endl;
+            }
         }
     } else {
         hablando = false;
+        cout << "no hablando" << endl;
     }
 }
 
@@ -57,7 +76,8 @@ float Rana::calcular_dist(Vector2f s1, Vector2f s2){
     return sqrt(dist_x * dist_x + dist_y * dist_y);
 }
 
-void Rana::hablar(){
+void Rana::hablar(int dialogo_actual){
+    sprite_dialogo.setTexture(dialogos[dialogo_actual]);
     hablando = true;
 }
 
