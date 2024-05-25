@@ -18,7 +18,7 @@ int main()
     ajolote.sprite_npc.setPosition(600,800);
     Clock reloj;
 
-    if(!mapaTexture.loadFromFile("assets/mapa_1_v2.png"))
+    if(!mapaTexture.loadFromFile("assets/fondo.jpg"))
     {
         cout << "Error al cargar imagen" << endl;
     }
