@@ -19,7 +19,6 @@ class Rana{
     size_t currentFrame = 0;
     float frameTime = 0.5f;
     float currentTime = 0.f;
-    bool hablando = false;
 
 
     public:
@@ -28,8 +27,10 @@ class Rana{
     Rana();
     void update(float deltaTime,Sprite sprite, RenderWindow &window);
     float calcular_dist(Vector2f s1, Vector2f s2);
+    void habla(Sprite sprite);
     void hablar(int dialogo_actual);
     void drawDialog(RenderWindow &window);
+    bool hablando = false;
 
 };
 

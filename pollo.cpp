@@ -77,19 +77,20 @@ this->sprite_pollo.move(this->speed_x,this->speed_y);
 }
 
 void Pollito::correr(){
-    this->speed_x = speed_x*2;
-    this->speed_y = speed_y*2;
+    this->speed_x = speed_x*3;
+    this->speed_y = speed_y*3;
 }
 
-void Pollito::update(float deltaTime){
+void Pollito::update(float deltaTime, Rana *rana){
     currentTime += deltaTime;
     //acumular tiempo desde el ultimo cuadro
     this->moviendose = false;
 
     if(Keyboard::isKeyPressed(Keyboard::D)){
+        
         this->speed_x = 1;
         this->speed_y = 0;
-        this->mover();
+        //this->mover();
         this->moviendose = true;
         this->mirando_der = true;
     }
@@ -97,7 +98,7 @@ void Pollito::update(float deltaTime){
     if(Keyboard::isKeyPressed(Keyboard::A)){
         this->speed_x = -1;
         this->speed_y = 0;
-        this->mover();
+        //this->mover();
         this->moviendose = true;
         this->mirando_der = false;
     }
@@ -105,20 +106,22 @@ void Pollito::update(float deltaTime){
     if(Keyboard::isKeyPressed(Keyboard::W)){
         this->speed_x = 0;
         this->speed_y = -1;
-        this->mover();
+        //this->mover();
         this->moviendose = true;
     }
 
     if(Keyboard::isKeyPressed(Keyboard::S)){
         this->speed_x = 0;
         this->speed_y = 1;
-        this->mover();
+        //this->mover();
         this->moviendose = true;
     }
 
     if(Keyboard::isKeyPressed(Keyboard::Space)){
         this->correr();
     }
+
+    this->pausar(rana);
 
     if (this->moviendose){
         this->mover();
@@ -140,6 +143,7 @@ void Pollito::update(float deltaTime){
         }
     }
     //realiza la animacion idle si no se esta moviendo
+
 }
 
 void Pollito::idle_der(){
@@ -172,4 +176,13 @@ void Pollito::mover_izq(){
         currentFrame = (currentFrame + 1) % moviendose_izq.size();
         sprite_pollo.setTexture(moviendose_izq[currentFrame]);
     }
+}
+
+void Pollito::pausar(Rana *rana){
+    if(rana->hablando){
+        this->speed_x = 0;
+        this->speed_y = 0;
+        this->moviendose = false;
+    }
+    //se queda quieto si esta hablando con un npc
 }

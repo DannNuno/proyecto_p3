@@ -51,23 +51,23 @@ void Rana::update(float deltaTime, Sprite sprite, RenderWindow &window){
         currentFrame = (currentFrame + 1) % idleFrames.size();
         sprite_rana.setTexture(idleFrames[currentFrame]); 
     }
-    if(calcular_dist(sprite.getPosition(), this->sprite_rana.getPosition()) <= 150){
+    /*if(calcular_dist(sprite.getPosition(), this->sprite_rana.getPosition()) <= 150){
         //hay errores al hablar
         if(Keyboard::isKeyPressed(Keyboard::Enter)){
-            if(dialogos_index < dialogos.size()){
-                cout << "dialogo num." << dialogos_index << endl;
-                hablar(dialogos_index);
-                dialogos_index = (dialogos_index + 1) % dialogos.size();
+            if(this->dialogos_index < this->dialogos.size()){
+                cout << "dialogo num." << this->dialogos_index << endl;
+                hablar(this->dialogos_index);
+                this->dialogos_index = (this->dialogos_index + 1) % this->dialogos.size();
             } else {
-                dialogos_index = 0;
-                hablando = false;
+                this->dialogos_index = 0;
+                this->hablando = false;
                 cout << "no hablando" << endl;
             }
         }
     } else {
-        hablando = false;
+        this->hablando = false;
         cout << "no hablando" << endl;
-    }
+    }*/
 }
 
 float Rana::calcular_dist(Vector2f s1, Vector2f s2){
@@ -76,13 +76,33 @@ float Rana::calcular_dist(Vector2f s1, Vector2f s2){
     return sqrt(dist_x * dist_x + dist_y * dist_y);
 }
 
+void Rana::habla(Sprite sprite){
+if(calcular_dist(sprite.getPosition(), this->sprite_rana.getPosition()) <= 150){
+    this->hablando = true;
+        //hay errores al hablar
+            if(this->dialogos_index < this->dialogos.size()){
+                cout << "dialogo num." << this->dialogos_index << endl;
+                hablar(this->dialogos_index);
+                this->dialogos_index = (this->dialogos_index + 1);
+            } else {
+                this->hablando = false;
+                this->dialogos_index = 0;
+                cout << "no hablando" << endl;
+            }
+        
+    } else {
+        this->hablando = false;
+        cout << "no hablando" << endl;
+    }
+}
+
 void Rana::hablar(int dialogo_actual){
-    sprite_dialogo.setTexture(dialogos[dialogo_actual]);
-    hablando = true;
+    this->sprite_dialogo.setTexture(dialogos[dialogo_actual]);
+    this->hablando = true;
 }
 
 void Rana::drawDialog(RenderWindow &window) {
-    if (hablando){
-        window.draw(sprite_dialogo);
+    if (this->hablando){
+        window.draw(this->sprite_dialogo);
     }
 }

@@ -18,7 +18,7 @@ int main()
     ajolote.sprite_npc.setPosition(600,800);
     Clock reloj;
 
-    if(!mapaTexture.loadFromFile("assets/fondo.jpg"))
+    if(!mapaTexture.loadFromFile("assets/fondo_2.jpg"))
     {
         cout << "Error al cargar imagen" << endl;
     }
@@ -37,11 +37,17 @@ int main()
             if (event.type == Event::Closed)
                 window.close();
 
+            if(event.type == Event::KeyPressed){
+                if(Keyboard::isKeyPressed(Keyboard::Enter)){
+                    rana.habla(pollo.sprite_pollo);
+                }
+            }
+
             
         }
 
         float deltaTime = reloj.restart().asSeconds();
-        pollo.update(deltaTime);
+        pollo.update(deltaTime, &rana);
         rana.update(deltaTime, pollo.sprite_pollo, window);
         
         window.clear(Color(51,51,51));
