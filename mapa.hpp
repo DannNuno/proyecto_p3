@@ -7,14 +7,14 @@ using namespace sf;
 using namespace std;
 
 class Mapa{
-    private:
+       private:
     Texture mapa1_Texture;
     Texture mapa2_Texture;
     Texture mapa3_Texture;
     Texture mapa4_Texture;
-
-    public:
+ public:
     Sprite sprite_mapa;
+    int nivel;
 
     Mapa();
     void cambiarmapa(Sprite *sprite);
