@@ -40,10 +40,12 @@ int main()
         float deltaTime = reloj.restart().asSeconds();
         pollo.update(deltaTime, &rana);
         rana.update(deltaTime, pollo.sprite_pollo, window);
+        mapa.cambiarmapa(&pollo.sprite_pollo);
+        cout << pollo.sprite_pollo.getPosition().y << endl;
         
         window.clear(Color(51,51,51));
 
-        window.draw(mapa.mapa);
+        window.draw(mapa.sprite_mapa);
         window.draw(rana.sprite_rana);
         window.draw(ajolote.sprite_npc);
         window.draw(pollo.sprite_pollo);

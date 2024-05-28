@@ -29,6 +29,29 @@ Mapa::Mapa(){
     }
     this->mapa4_Texture.setRepeated(true);
 
-    this->mapa.setTexture(mapa1_Texture);
-    this->mapa.setScale(10,10);
+    this->sprite_mapa.setTexture(mapa3_Texture);
+    this->sprite_mapa.setScale(10,10);
+}
+
+void Mapa::cambiarmapa(Sprite *sprite){
+    if(this->sprite_mapa.getTexture())
+    if(sprite->getPosition().x < -95){
+        this->sprite_mapa.setTexture(mapa4_Texture);
+        sprite->setPosition(1915,sprite->getPosition().y);
+    }
+
+    if(sprite->getPosition().x > 1920){
+        this->sprite_mapa.setTexture(mapa3_Texture);
+        sprite->setPosition(-95,sprite->getPosition().y);
+    }
+
+    if(sprite->getPosition().y > 1010){
+        this->sprite_mapa.setTexture(mapa2_Texture);
+        sprite->setPosition(sprite->getPosition().x,-90);
+    }
+
+    if(sprite->getPosition().y < -100){
+        this->sprite_mapa.setTexture(mapa1_Texture);
+        sprite->setPosition(sprite->getPosition().x,1005);
+    }
 }

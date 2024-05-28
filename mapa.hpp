@@ -14,9 +14,10 @@ class Mapa{
     Texture mapa4_Texture;
 
     public:
-    Sprite mapa;
+    Sprite sprite_mapa;
 
     Mapa();
+    void cambiarmapa(Sprite *sprite);
 
 };
 
