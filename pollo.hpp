@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "rana.hpp"
 using namespace sf;
 using namespace std;
 
@@ -38,12 +39,13 @@ class Pollito{
     Pollito();
     void mover();
     void correr();
-    void update(float deltaTime);
+    void update(float deltaTime, Rana *rana);
     // deltaTime se utiliza para que la animacion ocurra independientemente de los FPS, es el tiempo transcurrido desde el ultimo cuadro
     void idle_der();
     void idle_izq();
     void mover_der();
     void mover_izq();
+    void pausar(Rana *rana);
 
 };
 
