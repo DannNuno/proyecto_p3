@@ -36,12 +36,22 @@ int main()
                     rana.habla(pollo.sprite_pollo);
                 }
             }
+            
+            if(event.type == Event::KeyPressed){
+                if(Keyboard::isKeyPressed(Keyboard::Q))
+                pollo.abrir_inv();
+            }
+
+            if(event.type == Event::KeyPressed){
+                if(Keyboard::isKeyPressed(Keyboard::K))
+                pollo.cambiar_objactual();
+            }
 
             
         }
 
         float deltaTime = reloj.restart().asSeconds();
-        pollo.update(deltaTime, &rana);
+        pollo.update(deltaTime, &rana, &manzana);
         rana.update(deltaTime, pollo.sprite_pollo, window);
         mapa.cambiarmapa(&pollo.sprite_pollo);
         cout << pollo.sprite_pollo.getPosition().y << endl;
@@ -51,10 +61,11 @@ int main()
         window.draw(mapa.sprite_mapa);
         window.draw(rana.sprite_rana);
         window.draw(ajolote.sprite_npc);
-        window.draw(manzana.sprite_objeto);
         window.draw(pollo.sprite_pollo);
 
         rana.drawDialog(window);
+        manzana.update(window);
+        pollo.ver_inventario(window);
 
         window.display();
     }

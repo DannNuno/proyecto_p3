@@ -53,8 +53,16 @@ Pollito::Pollito(){
     }
     this->polloTexture_8.setRepeated(true);
 
+    if(!this->inventarioTexture.loadFromFile("assets/inventario.png"))
+    {
+        cout << "Error al cargar imagen" << endl;
+    }
+    this->inventarioTexture.setRepeated(true);
+
     this->sprite_pollo.setTexture(this->polloTexture);
     this->sprite_pollo.setScale(6,6);
+    this->sprite_inventario.setTexture(this->inventarioTexture);
+    this->sprite_inventario.setScale(10,10);
 
     idleFrames_der.push_back(polloTexture);
     idleFrames_der.push_back(polloTexture_3);
@@ -81,10 +89,12 @@ void Pollito::correr(){
     this->speed_y = speed_y*3;
 }
 
-void Pollito::update(float deltaTime, Rana *rana){
+void Pollito::update(float deltaTime, Rana *rana, Objeto *objeto){
     currentTime += deltaTime;
     //acumular tiempo desde el ultimo cuadro
     this->moviendose = false;
+
+    this->tomar_objeto(objeto);
 
     if(Keyboard::isKeyPressed(Keyboard::D)){
         
@@ -179,10 +189,51 @@ void Pollito::mover_izq(){
 }
 
 void Pollito::pausar(Rana *rana){
-    if(rana->hablando){
+    if(rana->hablando || this->inv_abierto){
         this->speed_x = 0;
         this->speed_y = 0;
         this->moviendose = false;
     }
     //se queda quieto si esta hablando con un npc
+    //se queda quieto si el inventario esta abierto
+    
+}
+
+void Pollito::tomar_objeto(Objeto *objeto){
+    float dist = objeto->calcular_dist(objeto->sprite_objeto.getPosition(),this->sprite_pollo.getPosition());
+    if(dist <= 150){
+        if(objeto->en_mapa){
+            if(Keyboard::isKeyPressed(Keyboard::E)){
+                inventario.push_back(objeto);
+                objeto->en_mapa = false;
+            }
+        }
+    }
+}
+
+void Pollito::abrir_inv(){
+    this->inv_abierto = !inv_abierto;
+}
+
+void Pollito::ver_inventario(RenderWindow &window){
+    Sprite obj_act;
+    obj_act.setTexture(inventario[objeto_actual]->getTextura());
+
+    //crashea el codigo
+    if(this->inv_abierto){
+        window.draw(this->sprite_inventario);
+        window.draw(inventario[objeto_actual]->sprite_objeto);
+    }
+    /*if(this->inv_abierto){
+        window.draw(this->sprite_inventario);
+        objeto_actual = (objeto_actual + 1) % this->inventario.size();
+        window.draw(inventario[objeto_actual]->sprite_objeto);
+    }*/
+}
+
+void Pollito::cambiar_objactual(){
+    this->objeto_actual += 1;
+    if(this->objeto_actual > this->inventario.size()){
+        this->objeto_actual = 0;
+    }
 }
