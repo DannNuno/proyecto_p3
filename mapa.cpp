@@ -57,6 +57,11 @@ void Mapa::cambiarmapa(Sprite *sprite)
             sprite->setPosition(1800, sprite->getPosition().y);
             nivel = 2;
         }
+        if(sprite->getPosition().y> 1920)
+        {
+           
+            sprite->setPosition(sprite->getPosition().x,1920);
+        }
     }
 
     if (nivel == 2)
@@ -78,7 +83,59 @@ void Mapa::cambiarmapa(Sprite *sprite)
             sprite->setPosition(sprite->getPosition().x,2080);
             nivel = 3;
         }
+        if(sprite->getPosition().x<0)
+        {
+              sprite->setPosition(0,sprite->getPosition().y);
+        }
     }
+    if(nivel==3)
+    {
+       if (sprite->getPosition().y < 0)
+        {
+            sprite->setPosition(sprite->getPosition().x, 0);
+        }
+        if (sprite->getPosition().x > 1920 )
+        {
+            this->sprite_mapa.setTexture(mapa2_Texture);
+            sprite->setPosition(0, sprite->getPosition().y);
+            nivel = 4;       
+        }
+         if(sprite->getPosition().x<0)
+        {
+              sprite->setPosition(0,sprite->getPosition().y);
+        }
+        if(sprite->getPosition().y> 1920)
+        {
+            this->sprite_mapa.setTexture(mapa4_Texture);
+            sprite->setPosition(sprite->getPosition().x,0);
+            nivel = 2; 
+        }
+    }
+    if(nivel==4)
+    {
+     if (sprite->getPosition().y < 0)
+        {
+            sprite->setPosition(sprite->getPosition().x, 0);
+        }
+          if(sprite->getPosition().y> 1920)
+        {
+           
+            sprite->setPosition(sprite->getPosition().x,1920);
+        }
+        if(sprite->getPosition().x> 1080)
+        {
+            sprite->setPosition(1080,sprite->getPosition().y);
+        }
+        if(sprite->getPosition().x < -95)
+        {
+            this->sprite_mapa.setTexture(mapa1_Texture);
+            sprite->setPosition(1080,sprite->getPosition().y);
+            nivel = 3; 
+        }
+        }
+
+    }
+        
 
     /*
        if (this->sprite_mapa.getTexture() == sprite_mapa.getTexture(mapa3_Texture)) {
@@ -109,7 +166,7 @@ void Mapa::cambiarmapa(Sprite *sprite)
             sprite->setPosition(sprite->getPosition().x,1005);
         }
         */
-}
+
 
 /*
 if nivel =1;
