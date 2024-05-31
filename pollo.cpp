@@ -217,9 +217,10 @@ void Pollito::abrir_inv(){
 
 void Pollito::ver_inventario(RenderWindow &window){
     Sprite obj_act;
-    obj_act.setTexture(inventario[objeto_actual]->getTextura());
 
     //crashea el codigo
+    obj_act.setTexture(inventario[objeto_actual]->getTextura());
+
     if(this->inv_abierto){
         window.draw(this->sprite_inventario);
         window.draw(inventario[objeto_actual]->sprite_objeto);
@@ -232,8 +233,9 @@ void Pollito::ver_inventario(RenderWindow &window){
 }
 
 void Pollito::cambiar_objactual(){
-    this->objeto_actual += 1;
+    /*this->objeto_actual += 1;
     if(this->objeto_actual > this->inventario.size()){
         this->objeto_actual = 0;
-    }
+    }*/
+    this->objeto_actual = (objeto_actual + 1) % this->inventario.size();
 }
