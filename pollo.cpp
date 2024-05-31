@@ -217,19 +217,20 @@ void Pollito::abrir_inv(){
 
 void Pollito::ver_inventario(RenderWindow &window){
     Sprite obj_act;
-
-    //crashea el codigo
-    obj_act.setTexture(inventario[objeto_actual]->getTextura());
+    if(inventario.empty() == false){
+        obj_act.setTexture(inventario[objeto_actual]->textura_objeto);
+        obj_act.setPosition(800,500);
+        obj_act.setScale(20,20);
+    }
 
     if(this->inv_abierto){
         window.draw(this->sprite_inventario);
-        window.draw(inventario[objeto_actual]->sprite_objeto);
+        cout << objeto_actual << endl;
+
+        if(inventario.empty() == false){
+        window.draw(obj_act);
+        }
     }
-    /*if(this->inv_abierto){
-        window.draw(this->sprite_inventario);
-        objeto_actual = (objeto_actual + 1) % this->inventario.size();
-        window.draw(inventario[objeto_actual]->sprite_objeto);
-    }*/
 }
 
 void Pollito::cambiar_objactual(){

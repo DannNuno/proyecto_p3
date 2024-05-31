@@ -54,7 +54,6 @@ int main()
         pollo.update(deltaTime, &rana, &manzana);
         rana.update(deltaTime, pollo.sprite_pollo, window);
         mapa.cambiarmapa(&pollo.sprite_pollo);
-        cout << pollo.sprite_pollo.getPosition().y << endl;
         
         window.clear(Color(51,51,51));
 

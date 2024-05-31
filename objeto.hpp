@@ -8,16 +8,15 @@ using namespace std;
 
 class Objeto{
     private:
-    Texture textura_objeto;
 
     public:
+    Texture textura_objeto;
     Sprite sprite_objeto;
     bool en_mapa = true;
     void update(RenderWindow &window);
 
     Objeto();
     float calcular_dist(Vector2f s1, Vector2f s2);
-    Texture getTextura();
 
 };
 

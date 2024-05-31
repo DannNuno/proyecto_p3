@@ -33,7 +33,7 @@ class Pollito{
     bool mirando_der = true; // saber si el pollito esta mirando a la izq o der
     bool inv_abierto = false;
 
-    int objeto_actual;
+    int objeto_actual = 0;
 
     public:
     Sprite sprite_pollo;

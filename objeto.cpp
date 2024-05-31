@@ -27,7 +27,3 @@ float Objeto::calcular_dist(Vector2f s1, Vector2f s2){
     float dist_y = s1.y - s2.y;
     return sqrt(dist_x * dist_x + dist_y * dist_y);
 }
-
-Texture Objeto::getTextura(){
-    return textura_objeto;
-}
