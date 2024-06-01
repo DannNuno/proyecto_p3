@@ -53,6 +53,7 @@ int main()
         float deltaTime = reloj.restart().asSeconds();
         pollo.update(deltaTime, &rana, &manzana);
         rana.update(deltaTime, pollo.sprite_pollo, window);
+        ajolote.update(deltaTime, pollo.sprite_pollo, window);
         mapa.cambiarmapa(&pollo.sprite_pollo);
         
         window.clear(Color(51,51,51));

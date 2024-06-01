@@ -9,6 +9,7 @@ using namespace std;
 class NPC{
     private:
     Texture npcTexture;
+    Texture npcTexture2;
     Texture dialogo;
 
     vector<Texture> idleFrames;

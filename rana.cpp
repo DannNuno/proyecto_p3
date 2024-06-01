@@ -51,23 +51,6 @@ void Rana::update(float deltaTime, Sprite sprite, RenderWindow &window){
         currentFrame = (currentFrame + 1) % idleFrames.size();
         sprite_rana.setTexture(idleFrames[currentFrame]); 
     }
-    /*if(calcular_dist(sprite.getPosition(), this->sprite_rana.getPosition()) <= 150){
-        //hay errores al hablar
-        if(Keyboard::isKeyPressed(Keyboard::Enter)){
-            if(this->dialogos_index < this->dialogos.size()){
-                cout << "dialogo num." << this->dialogos_index << endl;
-                hablar(this->dialogos_index);
-                this->dialogos_index = (this->dialogos_index + 1) % this->dialogos.size();
-            } else {
-                this->dialogos_index = 0;
-                this->hablando = false;
-                cout << "no hablando" << endl;
-            }
-        }
-    } else {
-        this->hablando = false;
-        cout << "no hablando" << endl;
-    }*/
 }
 
 float Rana::calcular_dist(Vector2f s1, Vector2f s2){
@@ -79,7 +62,6 @@ float Rana::calcular_dist(Vector2f s1, Vector2f s2){
 void Rana::habla(Sprite sprite){
 if(calcular_dist(sprite.getPosition(), this->sprite_rana.getPosition()) <= 150){
     this->hablando = true;
-        //hay errores al hablar
             if(this->dialogos_index < this->dialogos.size()){
                 cout << "dialogo num." << this->dialogos_index << endl;
                 hablar(this->dialogos_index);

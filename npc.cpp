@@ -12,6 +12,12 @@ NPC::NPC(){
     }
     npcTexture.setRepeated(true);
 
+    if(!npcTexture2.loadFromFile("assets/ajolote_pilon2.png"))
+    {
+        cout << "Error al cargar imagen" << endl;
+    }
+    npcTexture2.setRepeated(true);
+
     if(!dialogo.loadFromFile("assets/hola.png"))
     {
         cout << "Error al cargar imagen" << endl;
@@ -25,7 +31,7 @@ NPC::NPC(){
     this->sprite_npc.setScale(6,6);
 
     this->idleFrames.push_back(npcTexture);
-    this->idleFrames.push_back(npcTexture);
+    this->idleFrames.push_back(npcTexture2);
 }
 
 void NPC::update(float deltaTime, Sprite sprite, RenderWindow &window){
