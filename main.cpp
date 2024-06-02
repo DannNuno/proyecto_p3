@@ -9,7 +9,7 @@ using namespace sf;
 using namespace std;
 int main()
 {
-    RenderWindow window(VideoMode(1920, 1080), "SFML works!");
+    RenderWindow window(VideoMode(1920, 1080), "La aventura mas kawaii");
     window.setFramerateLimit(60);
     Texture mapaTexture;
 
