@@ -14,6 +14,7 @@ Objeto::Objeto(){
 
     this->sprite_objeto.setTexture(textura_objeto);
     this->sprite_objeto.setScale(6,6);
+    this->type = 1;
 }
 
 void Objeto::update(RenderWindow &window){

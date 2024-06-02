@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cmath>
 #include "rana.hpp"
+#include "pollo.hpp"
 using namespace sf;
 using namespace std;
 
@@ -44,13 +45,14 @@ Rana::Rana(){
     this->dialogos.push_back(dialogo_2);
 }
 
-void Rana::update(float deltaTime, Sprite sprite, RenderWindow &window){
+void Rana::update(float deltaTime, Pollito &pollito, Objeto *objetoMision){
     currentTime += deltaTime;
     if (currentTime >= frameTime) {
         currentTime = 0.f;
         currentFrame = (currentFrame + 1) % idleFrames.size();
         sprite_rana.setTexture(idleFrames[currentFrame]); 
     }
+    this->mision(pollito, objetoMision);
 }
 
 float Rana::calcular_dist(Vector2f s1, Vector2f s2){
@@ -69,12 +71,10 @@ if(calcular_dist(sprite.getPosition(), this->sprite_rana.getPosition()) <= 150){
             } else {
                 this->hablando = false;
                 this->dialogos_index = 0;
-                cout << "no hablando" << endl;
             }
         
     } else {
         this->hablando = false;
-        cout << "no hablando" << endl;
     }
 }
 
@@ -87,4 +87,32 @@ void Rana::drawDialog(RenderWindow &window) {
     if (this->hablando){
         window.draw(this->sprite_dialogo);
     }
+}
+
+void Rana::mision(Pollito &pollito, Objeto *objetoMision){
+
+    if(this->hablando){
+    if(pollito.inventario.empty() == false){
+        
+        // Encontrar el objeto en el inventario
+        auto it = find(pollito.inventario.begin(), pollito.inventario.end(), objetoMision);
+
+        // Verificar si se encontró el objeto
+        if (it != pollito.inventario.end()) {
+            // Eliminar el objeto del inventario
+            pollito.inventario.erase(it);
+
+            cout << "Objeto mision rana tomado" << endl;
+        } else {
+            cout << "Objeto mision rana no encontrado" << endl;
+        }
+        
+    }
+    }
+
+
+    /*
+    si el pollito tiene la manzana, la rana
+    la toma y la mision se cumple
+    */
 }

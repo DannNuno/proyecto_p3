@@ -3,8 +3,13 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "pollo.hpp"
+#include "objeto.hpp"
 using namespace sf;
 using namespace std;
+
+class Pollito;
+class Objeto;
 
 class Rana{
     private:
@@ -25,11 +30,12 @@ class Rana{
     Sprite sprite_rana;
     Sprite sprite_dialogo;
     Rana();
-    void update(float deltaTime,Sprite sprite, RenderWindow &window);
+    void update(float deltaTime, Pollito &pollito, Objeto *objetoMision);
     float calcular_dist(Vector2f s1, Vector2f s2);
     void habla(Sprite sprite);
     void hablar(int dialogo_actual);
     void drawDialog(RenderWindow &window);
+    void mision(Pollito &pollo, Objeto *objetoMision);
     bool hablando = false;
 
 };

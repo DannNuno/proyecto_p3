@@ -8,6 +8,9 @@
 using namespace sf;
 using namespace std;
 
+class Rana;
+class Objeto;
+
 class Pollito{
     private:
     Texture polloTexture;

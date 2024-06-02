@@ -12,6 +12,7 @@ class Objeto{
     public:
     Texture textura_objeto;
     Sprite sprite_objeto;
+    int type;
     bool en_mapa = true;
     void update(RenderWindow &window);
 
