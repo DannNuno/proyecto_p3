@@ -9,55 +9,46 @@ Pollito::Pollito(){
     {
         cout << "Error al cargar imagen" << endl;
     }
-    this->polloTexture.setRepeated(true);
 
     if(!this->polloTexture_2.loadFromFile("assets/pollito_otrolado.png"))
     {
         cout << "Error al cargar imagen" << endl;
     }
-    this->polloTexture_2.setRepeated(true);
 
     if(!this->polloTexture_3.loadFromFile("assets/pollito2.png"))
     {
         cout << "Error al cargar imagen" << endl;
     }
-    this->polloTexture_3.setRepeated(true);
 
     if(!this->polloTexture_4.loadFromFile("assets/pollito2_otrolado.png"))
     {
         cout << "Error al cargar imagen" << endl;
     }
-    this->polloTexture_4.setRepeated(true);
 
     if(!this->polloTexture_5.loadFromFile("assets/pollito3.png"))
     {
         cout << "Error al cargar imagen" << endl;
     }
-    this->polloTexture_5.setRepeated(true);
 
     if(!this->polloTexture_6.loadFromFile("assets/pollito3_otrolado.png"))
     {
         cout << "Error al cargar imagen" << endl;
     }
-    this->polloTexture_6.setRepeated(true);
 
     if(!this->polloTexture_7.loadFromFile("assets/pollito4.png"))
     {
         cout << "Error al cargar imagen" << endl;
     }
-    this->polloTexture_7.setRepeated(true);
 
     if(!this->polloTexture_8.loadFromFile("assets/pollito4_otrolado.png"))
     {
         cout << "Error al cargar imagen" << endl;
     }
-    this->polloTexture_8.setRepeated(true);
 
     if(!this->inventarioTexture.loadFromFile("assets/inventario.png"))
     {
         cout << "Error al cargar imagen" << endl;
     }
-    this->inventarioTexture.setRepeated(true);
 
     this->sprite_pollo.setTexture(this->polloTexture);
     this->sprite_pollo.setScale(6,6);
@@ -89,12 +80,13 @@ void Pollito::correr(){
     this->speed_y = speed_y*3;
 }
 
-void Pollito::update(float deltaTime, Rana *rana, Objeto *objeto){
+void Pollito::update(float deltaTime, Rana *rana, Objeto *objeto1, Objeto *objeto2){
     currentTime += deltaTime;
     //acumular tiempo desde el ultimo cuadro
     this->moviendose = false;
 
-    this->tomar_objeto(objeto);
+    this->tomar_objeto(objeto1);
+    this->tomar_objeto(objeto2);
 
     if(Keyboard::isKeyPressed(Keyboard::D)){
         

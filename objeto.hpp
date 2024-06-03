@@ -16,6 +16,7 @@ class Objeto{
     void update(RenderWindow &window);
 
     Objeto();
+    Objeto(int objtype);
     Objeto(Texture textura_obj);
     float calcular_dist(Vector2f s1, Vector2f s2);
 

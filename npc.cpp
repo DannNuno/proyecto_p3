@@ -11,25 +11,21 @@ NPC::NPC(){
     {
         cout << "Error al cargar imagen" << endl;
     }
-    this->npcTexture.setRepeated(true);
 
     if(!this->npcTexture2.loadFromFile("assets/ajolote_pilon2.png"))
     {
         cout << "Error al cargar imagen" << endl;
     }
-    this->npcTexture2.setRepeated(true);
 
     if(!this->dialogo.loadFromFile("assets/hola.png"))
     {
         cout << "Error al cargar imagen" << endl;
     }
-    this->dialogo.setRepeated(true);
 
     if(!this->dialogo_2.loadFromFile("assets/soy_rana.png"))
     {
         cout << "Error al cargar imagen" << endl;
     }
-    this->dialogo_2.setRepeated(true);
 
     dialogos_index = 0;
     this->sprite_dialogo.setTexture(dialogo);
@@ -45,24 +41,90 @@ NPC::NPC(){
     this->dialogos.push_back(dialogo_2);
 }
 
-NPC::NPC(vector<Texture> texturas_npc, vector<Texture> texturas2_npc, vector<Texture> texturas_dialogos){
-    this->sprite_npc.setTexture(texturas_npc[0]);
-    this->sprite_npc.setScale(6,6);
+NPC::NPC(int typenpc){
 
-    this->sprite_dialogo.setTexture(texturas_dialogos[0]);
-    this->sprite_dialogo.setScale(10,10);
+    if(typenpc == 1){
+        if(!this->npcTexture.loadFromFile("assets/oso.png"))
+        {
+            cout << "Error al cargar imagen" << endl;
+        }
 
-    for(int i=0; i<texturas_npc.size(); i++){
-        this->idleFrames.push_back(texturas_npc[i]);
+        if(!this->npcTexture2.loadFromFile("assets/oso2.png"))
+        {
+            cout << "Error al cargar imagen" << endl;
+        }
+
+        if(!this->npcTexture3.loadFromFile("assets/oso3.png"))
+        {
+            cout << "Error al cargar imagen" << endl;
+        }
+
+        if(!this->npcTexture4.loadFromFile("assets/oso4.png"))
+        {
+            cout << "Error al cargar imagen" << endl;
+        }
+
+        if(!this->dialogo.loadFromFile("assets/hola.png"))
+        {
+            cout << "Error al cargar imagen" << endl;
+        }
+
+        if(!this->dialogo_2.loadFromFile("assets/soy_rana.png"))
+        {
+            cout << "Error al cargar imagen" << endl;
+        }
+
+        dialogos_index = 0;
+        this->sprite_dialogo.setTexture(dialogo);
+        this->sprite_dialogo.setScale(10,10);
+
+        this->sprite_npc.setTexture(npcTexture);
+        this->sprite_npc.setScale(6,6);
+
+        this->idleFrames.push_back(npcTexture);
+        this->idleFrames.push_back(npcTexture2);
+        this->idleFrames2.push_back(npcTexture3);
+        this->idleFrames2.push_back(npcTexture4);
+
+        this->dialogos.push_back(dialogo);
+        this->dialogos.push_back(dialogo_2);
     }
 
-    for(int i=0; i<texturas2_npc.size(); i++){
-        this->idleFrames2.push_back(texturas2_npc[i]);
+    if(typenpc == 2){
+        if(!this->npcTexture.loadFromFile("assets/hongo_mario.png"))
+        {
+            cout << "Error al cargar imagen" << endl;
+        }
+
+        if(!this->npcTexture2.loadFromFile("assets/hongo_mario.png"))
+        {
+            cout << "Error al cargar imagen" << endl;
+        }
+
+        if(!this->dialogo.loadFromFile("assets/hola.png"))
+        {
+            cout << "Error al cargar imagen" << endl;
+        }
+
+        if(!this->dialogo_2.loadFromFile("assets/soy_rana.png"))
+        {
+            cout << "Error al cargar imagen" << endl;
+        }
+
+        dialogos_index = 0;
+        this->sprite_dialogo.setTexture(dialogo);
+        this->sprite_dialogo.setScale(10,10);
+
+        this->sprite_npc.setTexture(npcTexture);
+        this->sprite_npc.setScale(6,6);
+
+        this->idleFrames.push_back(npcTexture);
+        this->idleFrames.push_back(npcTexture2);
+
+        this->dialogos.push_back(dialogo);
+        this->dialogos.push_back(dialogo_2);
     }
 
-    for(int i=0; i<texturas_dialogos.size(); i++){
-        this->dialogos.push_back(texturas_dialogos[i]);
-    }
 }
 
 void NPC::update(float deltaTime, Pollito &pollito, Objeto *objetoMision){
@@ -122,9 +184,9 @@ void NPC::mision(Pollito &pollito, Objeto *objetoMision){
             // Eliminar el objeto del inventario
             pollito.inventario.erase(it);
 
-            cout << "Objeto mision rana tomado" << endl;
+            cout << "Objeto mision tomado" << endl;
         } else {
-            cout << "Objeto mision rana no encontrado" << endl;
+            cout << "Objeto mision no encontrado" << endl;
         }
         
     }

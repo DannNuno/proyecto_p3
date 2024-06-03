@@ -10,10 +10,21 @@ Objeto::Objeto(){
     {
         cout << "Error al cargar imagen" << endl;
     }
-    this->textura_objeto.setRepeated(true);
 
     this->sprite_objeto.setTexture(textura_objeto);
     this->sprite_objeto.setScale(6,6);
+}
+
+Objeto::Objeto(int objtype){
+    if(objtype == 1){
+        if(!this->textura_objeto.loadFromFile("assets/manzana_azul.png"))
+            {
+                cout << "Error al cargar imagen" << endl;
+            }
+
+            this->sprite_objeto.setTexture(textura_objeto);
+            this->sprite_objeto.setScale(6,6);
+    }
 }
 
 Objeto::Objeto(Texture textura_obj){

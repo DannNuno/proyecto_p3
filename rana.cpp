@@ -11,25 +11,21 @@ Rana::Rana(){
     {
         cout << "Error al cargar imagen" << endl;
     }
-    this->ranaTexture.setRepeated(true);
 
     if(!this->ranaTexture_2.loadFromFile("assets/rana2.png"))
     {
         cout << "Error al cargar imagen" << endl;
     }
-    this->ranaTexture_2.setRepeated(true);
 
     if(!this->dialogo.loadFromFile("assets/hola.png"))
     {
         cout << "Error al cargar imagen" << endl;
     }
-    this->dialogo.setRepeated(true);
 
     if(!this->dialogo_2.loadFromFile("assets/soy_rana.png"))
     {
         cout << "Error al cargar imagen" << endl;
     }
-    this->dialogo_2.setRepeated(true);
 
     dialogos_index = 0;
     this->sprite_dialogo.setTexture(dialogo);

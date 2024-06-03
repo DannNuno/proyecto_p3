@@ -5,26 +5,30 @@
 #include "npc.hpp"
 #include "mapa.hpp"
 #include "objeto.hpp"
-#include "texturas.hpp"
 using namespace sf;
 using namespace std;
 int main()
 {
     RenderWindow window(VideoMode(1920, 1080), "La aventura mas kawaii");
     window.setFramerateLimit(60);
-    Texture mapaTexture;
-    texturitas texturinas;
 
     Mapa mapa;
     Pollito pollo;
     Rana rana;
     NPC ajolote;
-    NPC hongo(texturinas.texturas_hongo, texturinas.texturas_hongo, texturinas.texturas_dialogo_hongo);
-    NPC oso(texturinas.texturas_oso1, texturinas.texturas_oso2, texturinas.texturas_dialogo_oso);
+    NPC hongo(2);
+    NPC oso(1);
     Objeto manzana;
+    Objeto placeholder(1);
+
+    vector<Objeto> objetos;
+
+    objetos.push_back(manzana);
+    objetos.push_back(placeholder);
 
     rana.sprite_rana.setPosition(800,600);
     manzana.sprite_objeto.setPosition(300,400);
+    placeholder.sprite_objeto.setPosition(400,200);
     ajolote.sprite_npc.setPosition(600,800);
     hongo.sprite_npc.setPosition(500,300);
     oso.sprite_npc.setPosition(800,600);
@@ -66,9 +70,10 @@ int main()
         }
 
         float deltaTime = reloj.restart().asSeconds();
-        pollo.update(deltaTime, &rana, &manzana);
+        pollo.update(deltaTime, &rana, &manzana, &placeholder);
         rana.update(deltaTime, pollo, &manzana);
         ajolote.update(deltaTime, pollo, &manzana);
+        oso.update(deltaTime, pollo, &placeholder);
         hongo.update(deltaTime, pollo, &manzana);
         mapa.cambiarmapa(&pollo.sprite_pollo);
         
@@ -83,6 +88,7 @@ int main()
         }
         if(mapa.nivel == 2){
             window.draw(oso.sprite_npc);
+            placeholder.update(window);
         }
         window.draw(pollo.sprite_pollo);
 

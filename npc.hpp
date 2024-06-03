@@ -12,6 +12,8 @@ class NPC{
     private:
     Texture npcTexture;
     Texture npcTexture2;
+    Texture npcTexture3;
+    Texture npcTexture4;
     Texture dialogo;
     Texture dialogo_2;
     int dialogos_index;
@@ -28,7 +30,7 @@ class NPC{
     Sprite sprite_npc;
     Sprite sprite_dialogo;
     NPC();
-    NPC(vector<Texture> texturas_npc, vector<Texture> texturas2_npc, vector<Texture> texturas_dialogos);
+    NPC(int typenpc);
     void update(float deltaTime, Pollito &pollito, Objeto *objetoMision);
     float calcular_dist(Vector2f s1, Vector2f s2);
     void habla(Sprite sprite);
