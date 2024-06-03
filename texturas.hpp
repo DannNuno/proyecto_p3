@@ -9,7 +9,9 @@ using namespace std;
 class texturitas{
     public:
     Texture textura_hongo;
+    Texture textura_dialogo;
     vector<Texture> texturas_hongo;
+    vector<Texture> texturas_dialogo_hongo;
 
     texturitas();
 };

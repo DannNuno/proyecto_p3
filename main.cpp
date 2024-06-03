@@ -19,7 +19,7 @@ int main()
     Pollito pollo;
     Rana rana;
     NPC ajolote;
-    NPC hongo(texturinas.texturas_hongo);
+    NPC hongo(texturinas.texturas_hongo, texturinas.texturas_dialogo_hongo);
     Objeto manzana;
     rana.sprite_rana.setPosition(800,600);
     manzana.sprite_objeto.setPosition(300,400);

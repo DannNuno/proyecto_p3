@@ -45,12 +45,20 @@ NPC::NPC(){
     this->dialogos.push_back(dialogo_2);
 }
 
-NPC::NPC(Texture texture1, Texture texture2){
-    this->sprite_npc.setTexture(texture1);
+NPC::NPC(vector<Texture> texturas_npc, vector<Texture> texturas_dialogos){
+    this->sprite_npc.setTexture(texturas_npc[0]);
     this->sprite_npc.setScale(6,6);
 
-    this->idleFrames.push_back(texture1);
-    this->idleFrames.push_back(texture2);
+    this->sprite_dialogo.setTexture(texturas_dialogos[0]);
+    this->sprite_dialogo.setScale(10,10);
+
+    for(int i=0; i<texturas_npc.size(); i++){
+        this->idleFrames.push_back(texturas_npc[i]);
+    }
+
+    for(int i=0; i<texturas_npc.size(); i++){
+        this->dialogos.push_back(texturas_dialogos[i]);
+    }
 }
 
 void NPC::update(float deltaTime, Pollito &pollito, Objeto *objetoMision){
