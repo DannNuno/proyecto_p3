@@ -37,9 +37,11 @@ int main()
 
             if(event.type == Event::KeyPressed){
                 if(Keyboard::isKeyPressed(Keyboard::Enter)){
-                    rana.habla(pollo.sprite_pollo);
-                    ajolote.habla(pollo.sprite_pollo);
-                    hongo.habla(pollo.sprite_pollo);
+                    if(mapa.nivel == 1){
+                        rana.habla(pollo.sprite_pollo);
+                        ajolote.habla(pollo.sprite_pollo);
+                        hongo.habla(pollo.sprite_pollo);
+                    }
                 }
             }
             
@@ -63,18 +65,20 @@ int main()
         hongo.update(deltaTime, pollo, &manzana);
         mapa.cambiarmapa(&pollo.sprite_pollo);
         
-        window.clear(Color(51,51,51));
+        window.clear();
 
         window.draw(mapa.sprite_mapa);
-        window.draw(rana.sprite_rana);
-        window.draw(ajolote.sprite_npc);
-        window.draw(hongo.sprite_npc);
+        if(mapa.nivel == 1){
+            window.draw(rana.sprite_rana);
+            window.draw(ajolote.sprite_npc);
+            window.draw(hongo.sprite_npc);
+            manzana.update(window);
+        }
         window.draw(pollo.sprite_pollo);
 
         rana.drawDialog(window);
         ajolote.drawDialog(window);
         hongo.drawDialog(window);
-        manzana.update(window);
         pollo.ver_inventario(window);
 
         window.display();
