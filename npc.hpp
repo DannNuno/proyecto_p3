@@ -27,6 +27,7 @@ class NPC{
     Sprite sprite_npc;
     Sprite sprite_dialogo;
     NPC();
+    NPC(Texture texture1, Texture texture2);
     void update(float deltaTime, Pollito &pollito, Objeto *objetoMision);
     float calcular_dist(Vector2f s1, Vector2f s2);
     void habla(Sprite sprite);

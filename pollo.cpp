@@ -137,11 +137,9 @@ void Pollito::update(float deltaTime, Rana *rana, Objeto *objeto){
         this->mover();
         if(this->mirando_der){
             this->mover_der();
-            cout << "derecha" << endl;
         }
         else{
             this->mover_izq();
-            cout << "izquierda" << endl;
         }
     }
     else{

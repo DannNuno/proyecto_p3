@@ -45,6 +45,14 @@ NPC::NPC(){
     this->dialogos.push_back(dialogo_2);
 }
 
+NPC::NPC(Texture texture1, Texture texture2){
+    this->sprite_npc.setTexture(texture1);
+    this->sprite_npc.setScale(6,6);
+
+    this->idleFrames.push_back(texture1);
+    this->idleFrames.push_back(texture2);
+}
+
 void NPC::update(float deltaTime, Pollito &pollito, Objeto *objetoMision){
     currentTime += deltaTime;
     if (currentTime >= frameTime) {
