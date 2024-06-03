@@ -34,6 +34,7 @@ int main()
             if(event.type == Event::KeyPressed){
                 if(Keyboard::isKeyPressed(Keyboard::Enter)){
                     rana.habla(pollo.sprite_pollo);
+                    ajolote.habla(pollo.sprite_pollo);
                 }
             }
             
@@ -53,7 +54,7 @@ int main()
         float deltaTime = reloj.restart().asSeconds();
         pollo.update(deltaTime, &rana, &manzana);
         rana.update(deltaTime, pollo, &manzana);
-        ajolote.update(deltaTime, pollo.sprite_pollo, window);
+        ajolote.update(deltaTime, pollo, &manzana);
         mapa.cambiarmapa(&pollo.sprite_pollo);
         
         window.clear(Color(51,51,51));
@@ -64,6 +65,7 @@ int main()
         window.draw(pollo.sprite_pollo);
 
         rana.drawDialog(window);
+        ajolote.drawDialog(window);
         manzana.update(window);
         pollo.ver_inventario(window);
 
