@@ -9,6 +9,7 @@ using namespace std;
 class texturitas{
     public:
     Texture textura_hongo;
+    vector<Texture> texturas_hongo;
 
     texturitas();
 };

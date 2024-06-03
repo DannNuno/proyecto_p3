@@ -10,4 +10,6 @@ texturitas::texturitas(){
         cout << "Error al cargar imagen" << endl;
     }
     this->textura_hongo.setRepeated(true);
+
+    texturas_hongo.push_back(textura_hongo);
 }
