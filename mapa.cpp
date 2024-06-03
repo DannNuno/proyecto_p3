@@ -57,10 +57,14 @@ void Mapa::cambiarmapa(Sprite *sprite)
             sprite->setPosition(1800, sprite->getPosition().y);
             nivel = 2;
         }
-        if(sprite->getPosition().y> 1920)
+        if(sprite->getPosition().y> 920)
         {
            
-            sprite->setPosition(sprite->getPosition().x,1920);
+            sprite->setPosition(sprite->getPosition().x,920);
+        }
+         if(sprite->getPosition().x> 1820)
+        {
+            sprite->setPosition(1820,sprite->getPosition().y);
         }
     }
 
@@ -77,17 +81,22 @@ void Mapa::cambiarmapa(Sprite *sprite)
             sprite->setPosition(0, sprite->getPosition().y);
             nivel = 1;
         }
-        if(sprite->getPosition().y<0)
+        if(sprite->getPosition().y<-40 && sprite->getPosition().x <480)
         {
             this->sprite_mapa.setTexture(mapa1_Texture);
-            sprite->setPosition(sprite->getPosition().x,2080);
+            sprite->setPosition(sprite->getPosition().x,950);
             nivel = 3;
+        }
+        if (sprite->getPosition().x >480 && sprite->getPosition().y<0)
+        {
+         sprite->setPosition(sprite->getPosition().x, 0);
         }
         if(sprite->getPosition().x<0)
         {
               sprite->setPosition(0,sprite->getPosition().y);
         }
     }
+    
     if(nivel==3)
     {
        if (sprite->getPosition().y < 0)
@@ -104,12 +113,17 @@ void Mapa::cambiarmapa(Sprite *sprite)
         {
               sprite->setPosition(0,sprite->getPosition().y);
         }
-        if(sprite->getPosition().y> 1920)
+        if(sprite->getPosition().y> 1020 && sprite->getPosition().x <480)
         {
             this->sprite_mapa.setTexture(mapa4_Texture);
-            sprite->setPosition(sprite->getPosition().x,0);
+            sprite->setPosition(sprite->getPosition().x,-20);
             nivel = 2; 
         }
+        if(sprite->getPosition().x>480 && sprite->getPosition().y>920)
+        {
+            sprite->setPosition(sprite->getPosition().x,920);
+        }
+
     }
     if(nivel==4)
     {
@@ -122,15 +136,19 @@ void Mapa::cambiarmapa(Sprite *sprite)
            
             sprite->setPosition(sprite->getPosition().x,1920);
         }
-        if(sprite->getPosition().x> 1080)
+         if(sprite->getPosition().x> 1820)
         {
-            sprite->setPosition(1080,sprite->getPosition().y);
+            sprite->setPosition(1820,sprite->getPosition().y);
         }
         if(sprite->getPosition().x < -95)
         {
             this->sprite_mapa.setTexture(mapa1_Texture);
-            sprite->setPosition(1080,sprite->getPosition().y);
+            sprite->setPosition(1920,sprite->getPosition().y);
             nivel = 3; 
+        }
+        if(sprite->getPosition().y>920)
+        {
+            sprite->setPosition(sprite->getPosition().x,920);
         }
         }
 
