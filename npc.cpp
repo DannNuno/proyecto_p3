@@ -45,7 +45,7 @@ NPC::NPC(){
     this->dialogos.push_back(dialogo_2);
 }
 
-NPC::NPC(vector<Texture> texturas_npc, vector<Texture> texturas_dialogos){
+NPC::NPC(vector<Texture> texturas_npc, vector<Texture> texturas2_npc, vector<Texture> texturas_dialogos){
     this->sprite_npc.setTexture(texturas_npc[0]);
     this->sprite_npc.setScale(6,6);
 
@@ -56,7 +56,11 @@ NPC::NPC(vector<Texture> texturas_npc, vector<Texture> texturas_dialogos){
         this->idleFrames.push_back(texturas_npc[i]);
     }
 
-    for(int i=0; i<texturas_npc.size(); i++){
+    for(int i=0; i<texturas2_npc.size(); i++){
+        this->idleFrames2.push_back(texturas2_npc[i]);
+    }
+
+    for(int i=0; i<texturas_dialogos.size(); i++){
         this->dialogos.push_back(texturas_dialogos[i]);
     }
 }

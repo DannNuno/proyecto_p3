@@ -19,12 +19,15 @@ int main()
     Pollito pollo;
     Rana rana;
     NPC ajolote;
-    NPC hongo(texturinas.texturas_hongo, texturinas.texturas_dialogo_hongo);
+    NPC hongo(texturinas.texturas_hongo, texturinas.texturas_hongo, texturinas.texturas_dialogo_hongo);
+    NPC oso(texturinas.texturas_oso1, texturinas.texturas_oso2, texturinas.texturas_dialogo_oso);
     Objeto manzana;
+
     rana.sprite_rana.setPosition(800,600);
     manzana.sprite_objeto.setPosition(300,400);
     ajolote.sprite_npc.setPosition(600,800);
     hongo.sprite_npc.setPosition(500,300);
+    oso.sprite_npc.setPosition(800,600);
     Clock reloj;
     
     while (window.isOpen())
@@ -41,6 +44,10 @@ int main()
                         rana.habla(pollo.sprite_pollo);
                         ajolote.habla(pollo.sprite_pollo);
                         hongo.habla(pollo.sprite_pollo);
+                    }
+
+                    if(mapa.nivel == 2){
+                        oso.habla(pollo.sprite_pollo);
                     }
                 }
             }
@@ -74,11 +81,15 @@ int main()
             window.draw(hongo.sprite_npc);
             manzana.update(window);
         }
+        if(mapa.nivel == 2){
+            window.draw(oso.sprite_npc);
+        }
         window.draw(pollo.sprite_pollo);
 
         rana.drawDialog(window);
         ajolote.drawDialog(window);
         hongo.drawDialog(window);
+        oso.drawDialog(window);
         pollo.ver_inventario(window);
 
         window.display();

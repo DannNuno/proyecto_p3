@@ -12,11 +12,11 @@ class Objeto{
     public:
     Texture textura_objeto;
     Sprite sprite_objeto;
-    int type;
     bool en_mapa = true;
     void update(RenderWindow &window);
 
     Objeto();
+    Objeto(Texture textura_obj);
     float calcular_dist(Vector2f s1, Vector2f s2);
 
 };

@@ -17,6 +17,7 @@ class NPC{
     int dialogos_index;
 
     vector<Texture> idleFrames;
+    vector<Texture> idleFrames2;
     vector<Texture> dialogos;
     size_t currentFrame = 0;
     float frameTime = 0.5f;
@@ -27,7 +28,7 @@ class NPC{
     Sprite sprite_npc;
     Sprite sprite_dialogo;
     NPC();
-    NPC(vector<Texture> texturas_npc, vector<Texture> texturas_dialogos);
+    NPC(vector<Texture> texturas_npc, vector<Texture> texturas2_npc, vector<Texture> texturas_dialogos);
     void update(float deltaTime, Pollito &pollito, Objeto *objetoMision);
     float calcular_dist(Vector2f s1, Vector2f s2);
     void habla(Sprite sprite);
