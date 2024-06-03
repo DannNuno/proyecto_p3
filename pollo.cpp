@@ -215,7 +215,6 @@ void Pollito::ver_inventario(RenderWindow &window){
 
     if(this->inv_abierto){
         window.draw(this->sprite_inventario);
-        cout << objeto_actual << endl;
 
         if(inventario.empty() == false){
         window.draw(obj_act);
