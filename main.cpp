@@ -19,16 +19,16 @@ int main()
     NPC hongo(2);
     NPC oso(1);
     Objeto manzana;
-    Objeto placeholder(1);
+    Objeto objeto_oso(1);
 
     vector<Objeto> objetos;
 
     objetos.push_back(manzana);
-    objetos.push_back(placeholder);
+    objetos.push_back(objeto_oso);
 
     rana.sprite_rana.setPosition(800,600);
     manzana.sprite_objeto.setPosition(300,400);
-    placeholder.sprite_objeto.setPosition(400,200);
+    objeto_oso.sprite_objeto.setPosition(400,200);
     ajolote.sprite_npc.setPosition(600,800);
     hongo.sprite_npc.setPosition(500,300);
     oso.sprite_npc.setPosition(800,600);
@@ -70,10 +70,10 @@ int main()
         }
 
         float deltaTime = reloj.restart().asSeconds();
-        pollo.update(deltaTime, &rana, &manzana, &placeholder);
+        pollo.update(deltaTime, &rana, &manzana, &objeto_oso);
         rana.update(deltaTime, pollo, &manzana);
         ajolote.update(deltaTime, pollo, &manzana);
-        oso.update(deltaTime, pollo, &placeholder);
+        oso.update(deltaTime, pollo, &objeto_oso);
         hongo.update(deltaTime, pollo, &manzana);
         mapa.cambiarmapa(&pollo.sprite_pollo);
         
@@ -88,7 +88,7 @@ int main()
         }
         if(mapa.nivel == 2){
             window.draw(oso.sprite_npc);
-            placeholder.update(window);
+            objeto_oso.update(window);
         }
         window.draw(pollo.sprite_pollo);
 

@@ -36,6 +36,8 @@ NPC::NPC(){
 
     this->idleFrames.push_back(npcTexture);
     this->idleFrames.push_back(npcTexture2);
+    this->idleFrames2.push_back(npcTexture);
+    this->idleFrames2.push_back(npcTexture2);
 
     this->dialogos.push_back(dialogo);
     this->dialogos.push_back(dialogo_2);
@@ -120,6 +122,8 @@ NPC::NPC(int typenpc){
 
         this->idleFrames.push_back(npcTexture);
         this->idleFrames.push_back(npcTexture2);
+        this->idleFrames2.push_back(npcTexture);
+        this->idleFrames2.push_back(npcTexture2);
 
         this->dialogos.push_back(dialogo);
         this->dialogos.push_back(dialogo_2);
@@ -131,8 +135,14 @@ void NPC::update(float deltaTime, Pollito &pollito, Objeto *objetoMision){
     currentTime += deltaTime;
     if (currentTime >= frameTime) {
         currentTime = 0.f;
-        currentFrame = (currentFrame + 1) % idleFrames.size();
-        sprite_npc.setTexture(idleFrames[currentFrame]); 
+        if(mision_completada == false){
+            currentFrame = (currentFrame + 1) % idleFrames.size();
+            sprite_npc.setTexture(idleFrames[currentFrame]); 
+        }
+        if(mision_completada){
+            currentFrame = (currentFrame + 1) % idleFrames2.size();
+            sprite_npc.setTexture(idleFrames2[currentFrame]);
+        }
     }
     this->mision(pollito, objetoMision);
 }
@@ -183,6 +193,8 @@ void NPC::mision(Pollito &pollito, Objeto *objetoMision){
         if (it != pollito.inventario.end()) {
             // Eliminar el objeto del inventario
             pollito.inventario.erase(it);
+            pollito.misiones_completas++;
+            this->mision_completada = true;
 
             cout << "Objeto mision tomado" << endl;
         } else {

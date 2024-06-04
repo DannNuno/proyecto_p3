@@ -17,12 +17,12 @@ Rana::Rana(){
         cout << "Error al cargar imagen" << endl;
     }
 
-    if(!this->dialogo.loadFromFile("assets/hola.png"))
+    if(!this->dialogo.loadFromFile("assets/ranahola.png"))
     {
         cout << "Error al cargar imagen" << endl;
     }
 
-    if(!this->dialogo_2.loadFromFile("assets/soy_rana.png"))
+    if(!this->dialogo_2.loadFromFile("assets/ranamision.png"))
     {
         cout << "Error al cargar imagen" << endl;
     }
@@ -97,6 +97,7 @@ void Rana::mision(Pollito &pollito, Objeto *objetoMision){
         if (it != pollito.inventario.end()) {
             // Eliminar el objeto del inventario
             pollito.inventario.erase(it);
+            pollito.misiones_completas++;
 
             cout << "Objeto mision rana tomado" << endl;
         } else {

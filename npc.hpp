@@ -38,6 +38,7 @@ class NPC{
     void drawDialog(RenderWindow &window);
     void mision(Pollito &pollo, Objeto *objetoMision);
     bool hablando = false;
+    bool mision_completada = false;
 
 };
 

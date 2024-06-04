@@ -17,7 +17,7 @@ Objeto::Objeto(){
 
 Objeto::Objeto(int objtype){
     if(objtype == 1){
-        if(!this->textura_objeto.loadFromFile("assets/manzana_azul.png"))
+        if(!this->textura_objeto.loadFromFile("assets/objeto_oso.png"))
             {
                 cout << "Error al cargar imagen" << endl;
             }

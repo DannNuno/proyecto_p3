@@ -44,6 +44,7 @@ class Pollito{
     float speed_x;
     float speed_y;
     vector<Objeto*> inventario;
+    int misiones_completas = 0;
 
     Pollito();
     void mover();
