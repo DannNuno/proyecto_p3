@@ -14,6 +14,8 @@ class NPC{
     Texture npcTexture2;
     Texture npcTexture3;
     Texture npcTexture4;
+    Texture npcTexture5;
+    Texture npcTexture6;
     Texture dialogo;
     Texture dialogo_2;
     Texture dialogo_3;

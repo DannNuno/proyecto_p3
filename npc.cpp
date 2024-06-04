@@ -104,7 +104,27 @@ NPC::NPC(int typenpc){
             cout << "Error al cargar imagen" << endl;
         }
 
-        if(!this->npcTexture2.loadFromFile("assets/hongo_mario.png"))
+        if(!this->npcTexture2.loadFromFile("assets/hongo2.png"))
+        {
+            cout << "Error al cargar imagen" << endl;
+        }
+
+        if(!this->npcTexture3.loadFromFile("assets/hongo3.png"))
+        {
+            cout << "Error al cargar imagen" << endl;
+        }
+
+        if(!this->npcTexture4.loadFromFile("assets/hongo4.png"))
+        {
+            cout << "Error al cargar imagen" << endl;
+        }
+
+        if(!this->npcTexture5.loadFromFile("assets/hongo5.png"))
+        {
+            cout << "Error al cargar imagen" << endl;
+        }
+
+        if(!this->npcTexture6.loadFromFile("assets/hongo6.png"))
         {
             cout << "Error al cargar imagen" << endl;
         }
@@ -132,9 +152,17 @@ NPC::NPC(int typenpc){
         this->sprite_npc.setScale(6,6);
 
         this->idleFrames.push_back(npcTexture);
+        this->idleFrames.push_back(npcTexture4);
         this->idleFrames.push_back(npcTexture2);
+        this->idleFrames.push_back(npcTexture5);
+        this->idleFrames.push_back(npcTexture3);
+        this->idleFrames.push_back(npcTexture6);
         this->idleFrames2.push_back(npcTexture);
+        this->idleFrames2.push_back(npcTexture4);
         this->idleFrames2.push_back(npcTexture2);
+        this->idleFrames2.push_back(npcTexture5);
+        this->idleFrames2.push_back(npcTexture3);
+        this->idleFrames2.push_back(npcTexture6);
 
         this->dialogos.push_back(dialogo);
         this->dialogos.push_back(dialogo_2);

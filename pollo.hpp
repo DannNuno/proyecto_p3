@@ -34,7 +34,7 @@ class Pollito{
     float currentTime = 0.f; // saber cuando cambiar de cuadro
     
     bool moviendose = false; // saber si el pollito esta idle o moviendose
-    bool mirando_der = true; // saber si el pollito esta mirando a la izq o der
+    bool mirando_der = false; // saber si el pollito esta mirando a la izq o der
     bool inv_abierto = false;
 
     int objeto_actual = 0;

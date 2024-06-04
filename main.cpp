@@ -54,6 +54,7 @@ int main()
     Objeto manzana_azul(2);
     Objeto manzana_amarilla(3);
 
+    pollo.sprite_pollo.setPosition(1110,600);
     rana.sprite_rana.setPosition(800,600);
     manzana.sprite_objeto.setPosition(300,400);
     objeto_oso.sprite_objeto.setPosition(400,200);
