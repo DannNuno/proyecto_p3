@@ -76,8 +76,8 @@ this->sprite_pollo.move(this->speed_x,this->speed_y);
 }
 
 void Pollito::correr(){
-    this->speed_x = speed_x*3;
-    this->speed_y = speed_y*3;
+    this->speed_x = speed_x*5;
+    this->speed_y = speed_y*5;
 }
 
 void Pollito::update(float deltaTime, Rana *rana, Objeto *objeto1, Objeto *objeto2, Objeto *objeto3, Objeto *objeto4){
@@ -211,8 +211,8 @@ void Pollito::ver_inventario(RenderWindow &window){
     Sprite obj_act;
     if(inventario.empty() == false){
         obj_act.setTexture(inventario[objeto_actual]->textura_objeto);
-        obj_act.setPosition(800,500);
-        obj_act.setScale(20,20);
+        obj_act.setPosition(820,400);
+        obj_act.setScale(25,25);
     }
 
     if(this->inv_abierto){

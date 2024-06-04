@@ -17,12 +17,17 @@ NPC::NPC(){
         cout << "Error al cargar imagen" << endl;
     }
 
-    if(!this->dialogo.loadFromFile("assets/hola.png"))
+    if(!this->dialogo.loadFromFile("assets/ajolotehola.png"))
     {
         cout << "Error al cargar imagen" << endl;
     }
 
-    if(!this->dialogo_2.loadFromFile("assets/soy_rana.png"))
+    if(!this->dialogo_2.loadFromFile("assets/ajolotemision.png"))
+    {
+        cout << "Error al cargar imagen" << endl;
+    }
+
+    if(!this->dialogo_3.loadFromFile("assets/ajolotefin.png"))
     {
         cout << "Error al cargar imagen" << endl;
     }
@@ -41,6 +46,7 @@ NPC::NPC(){
 
     this->dialogos.push_back(dialogo);
     this->dialogos.push_back(dialogo_2);
+    this->dialogos2.push_back(dialogo_3);
 }
 
 NPC::NPC(int typenpc){
@@ -66,12 +72,12 @@ NPC::NPC(int typenpc){
             cout << "Error al cargar imagen" << endl;
         }
 
-        if(!this->dialogo.loadFromFile("assets/hola.png"))
+        if(!this->dialogo.loadFromFile("assets/osomision.png"))
         {
             cout << "Error al cargar imagen" << endl;
         }
 
-        if(!this->dialogo_2.loadFromFile("assets/soy_rana.png"))
+        if(!this->dialogo_2.loadFromFile("assets/osofin.png"))
         {
             cout << "Error al cargar imagen" << endl;
         }
@@ -89,7 +95,7 @@ NPC::NPC(int typenpc){
         this->idleFrames2.push_back(npcTexture4);
 
         this->dialogos.push_back(dialogo);
-        this->dialogos.push_back(dialogo_2);
+        this->dialogos2.push_back(dialogo_2);
     }
 
     if(typenpc == 2){
@@ -103,12 +109,17 @@ NPC::NPC(int typenpc){
             cout << "Error al cargar imagen" << endl;
         }
 
-        if(!this->dialogo.loadFromFile("assets/hola.png"))
+        if(!this->dialogo.loadFromFile("assets/hongohola.png"))
         {
             cout << "Error al cargar imagen" << endl;
         }
 
-        if(!this->dialogo_2.loadFromFile("assets/soy_rana.png"))
+        if(!this->dialogo_2.loadFromFile("assets/hongomision.png"))
+        {
+            cout << "Error al cargar imagen" << endl;
+        }
+
+        if(!this->dialogo_3.loadFromFile("assets/hongofin.png"))
         {
             cout << "Error al cargar imagen" << endl;
         }
@@ -127,11 +138,12 @@ NPC::NPC(int typenpc){
 
         this->dialogos.push_back(dialogo);
         this->dialogos.push_back(dialogo_2);
+        this->dialogos2.push_back(dialogo_3);
     }
 
 }
 
-void NPC::update(float deltaTime, Pollito &pollito, Objeto *objetoMision){
+void NPC::update(float deltaTime){
     currentTime += deltaTime;
     if (currentTime >= frameTime) {
         currentTime = 0.f;
@@ -144,7 +156,6 @@ void NPC::update(float deltaTime, Pollito &pollito, Objeto *objetoMision){
             sprite_npc.setTexture(idleFrames2[currentFrame]);
         }
     }
-    this->mision(pollito, objetoMision);
 }
 
 float NPC::calcular_dist(Vector2f s1, Vector2f s2){
@@ -153,18 +164,37 @@ float NPC::calcular_dist(Vector2f s1, Vector2f s2){
     return sqrt(dist_x * dist_x + dist_y * dist_y);
 }
 
-void NPC::habla(Sprite sprite){
-if(calcular_dist(sprite.getPosition(), this->sprite_npc.getPosition()) <= 150){
-    this->hablando = true;
+void NPC::habla(Sprite sprite, Pollito &pollito, Objeto *objetoMision){
+    if(calcular_dist(sprite.getPosition(), this->sprite_npc.getPosition()) <= 150){
+        this->hablando = true;
+        this->dialogo_terminado = false;
+        this->mision(pollito, objetoMision);
+
+        if(!this->mision_completada || !this->primer_dialogo) {
+            // Mostrar diálogos normales si la mision no está completa
             if(this->dialogos_index < this->dialogos.size()){
                 cout << "dialogo num." << this->dialogos_index << endl;
                 hablar(this->dialogos_index);
-                this->dialogos_index = (this->dialogos_index + 1);
+                this->dialogos_index++;
+                this->dialogo_terminado = false;
             } else {
                 this->hablando = false;
                 this->dialogos_index = 0;
+                this->dialogo_terminado = true;
+                this->primer_dialogo = true;
             }
-        
+        } else {
+            // Mostrar diálogos de mision completada
+            if(this->dialogos_index < this->dialogos2.size()){
+                cout << "dialogo2 num." << this->dialogos_index << endl;
+                hablar2(this->dialogos_index);
+                this->dialogos_index++;
+            } else {
+                this->hablando = false;
+                this->dialogos_index = 0;
+                this->dialogo_terminado = true;
+            }
+        }
     } else {
         this->hablando = false;
     }
@@ -172,6 +202,11 @@ if(calcular_dist(sprite.getPosition(), this->sprite_npc.getPosition()) <= 150){
 
 void NPC::hablar(int dialogo_actual){
     this->sprite_dialogo.setTexture(dialogos[dialogo_actual]);
+    this->hablando = true;
+}
+
+void NPC::hablar2(int dialogo_actual){
+    this->sprite_dialogo.setTexture(dialogos2[dialogo_actual]);
     this->hablando = true;
 }
 
@@ -191,10 +226,10 @@ void NPC::mision(Pollito &pollito, Objeto *objetoMision){
 
         // Verificar si se encontró el objeto
         if (it != pollito.inventario.end()) {
-            // Eliminar el objeto del inventario
-            pollito.inventario.erase(it);
-            pollito.misiones_completas++;
             this->mision_completada = true;
+            pollito.inventario.erase(it);
+            // Eliminar el objeto del inventario
+            pollito.misiones_completas++;
 
             cout << "Objeto mision tomado" << endl;
         } else {
@@ -203,10 +238,4 @@ void NPC::mision(Pollito &pollito, Objeto *objetoMision){
         
     }
     }
-
-
-    /*
-    si el pollito tiene la manzana, la rana
-    la toma y la mision se cumple
-    */
 }

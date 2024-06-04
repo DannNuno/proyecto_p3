@@ -35,6 +35,16 @@ Objeto::Objeto(int objtype){
             this->sprite_objeto.setTexture(textura_objeto);
             this->sprite_objeto.setScale(6,6);
     }
+
+    if(objtype == 3){
+        if(!this->textura_objeto.loadFromFile("assets/manzana_amarilla.png"))
+            {
+                cout << "Error al cargar imagen" << endl;
+            }
+
+            this->sprite_objeto.setTexture(textura_objeto);
+            this->sprite_objeto.setScale(6,6);
+    }
 }
 
 Objeto::Objeto(Texture textura_obj){

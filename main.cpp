@@ -21,12 +21,13 @@ int main()
     Objeto manzana;
     Objeto objeto_oso(1);
     Objeto manzana_azul(2);
-    Objeto placeholder;
+    Objeto manzana_amarilla(3);
 
     rana.sprite_rana.setPosition(800,600);
     manzana.sprite_objeto.setPosition(300,400);
     objeto_oso.sprite_objeto.setPosition(400,200);
     manzana_azul.sprite_objeto.setPosition(800,100);
+    manzana_amarilla.sprite_objeto.setPosition(900,20);
     ajolote.sprite_npc.setPosition(600,800);
     hongo.sprite_npc.setPosition(500,300);
     oso.sprite_npc.setPosition(800,600);
@@ -44,12 +45,12 @@ int main()
                 if(Keyboard::isKeyPressed(Keyboard::Enter)){
                     if(mapa.nivel == 1){
                         rana.habla(pollo.sprite_pollo, pollo, &manzana);
-                        ajolote.habla(pollo.sprite_pollo);
-                        hongo.habla(pollo.sprite_pollo);
+                        ajolote.habla(pollo.sprite_pollo, pollo, &manzana_amarilla);
+                        hongo.habla(pollo.sprite_pollo, pollo, &manzana_azul);
                     }
 
                     if(mapa.nivel == 2){
-                        oso.habla(pollo.sprite_pollo);
+                        oso.habla(pollo.sprite_pollo, pollo, &objeto_oso);
                     }
                 }
             }
@@ -68,11 +69,11 @@ int main()
         }
 
         float deltaTime = reloj.restart().asSeconds();
-        pollo.update(deltaTime, &rana, &manzana, &objeto_oso, &manzana_azul, &placeholder);
+        pollo.update(deltaTime, &rana, &manzana, &objeto_oso, &manzana_azul, &manzana_amarilla);
         rana.update(deltaTime);
-        ajolote.update(deltaTime, pollo, &manzana_azul);
-        oso.update(deltaTime, pollo, &objeto_oso);
-        hongo.update(deltaTime, pollo, &manzana);
+        ajolote.update(deltaTime);
+        oso.update(deltaTime);
+        hongo.update(deltaTime);
         mapa.cambiarmapa(&pollo.sprite_pollo);
         
         window.clear();
@@ -91,6 +92,10 @@ int main()
 
         if(mapa.nivel == 3){
             manzana_azul.update(window);
+        }
+
+        if(mapa.nivel == 4){
+            manzana_amarilla.update(window);
         }
 
         window.draw(pollo.sprite_pollo);
