@@ -80,13 +80,15 @@ void Pollito::correr(){
     this->speed_y = speed_y*3;
 }
 
-void Pollito::update(float deltaTime, Rana *rana, Objeto *objeto1, Objeto *objeto2){
+void Pollito::update(float deltaTime, Rana *rana, Objeto *objeto1, Objeto *objeto2, Objeto *objeto3, Objeto *objeto4){
     currentTime += deltaTime;
     //acumular tiempo desde el ultimo cuadro
     this->moviendose = false;
 
     this->tomar_objeto(objeto1);
     this->tomar_objeto(objeto2);
+    this->tomar_objeto(objeto3);
+    this->tomar_objeto(objeto4);
 
     if(Keyboard::isKeyPressed(Keyboard::D)){
         

@@ -49,7 +49,7 @@ class Pollito{
     Pollito();
     void mover();
     void correr();
-    void update(float deltaTime, Rana *rana, Objeto *objeto1, Objeto *objeto2);
+    void update(float deltaTime, Rana *rana, Objeto *objeto1, Objeto *objeto2, Objeto *objeto3, Objeto *objeto4);
     // deltaTime se utiliza para que la animacion ocurra independientemente de los FPS, es el tiempo transcurrido desde el ultimo cuadro
     void idle_der();
     void idle_izq();
