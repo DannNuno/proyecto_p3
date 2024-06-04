@@ -45,7 +45,7 @@ int main()
             if(event.type == Event::KeyPressed){
                 if(Keyboard::isKeyPressed(Keyboard::Enter)){
                     if(mapa.nivel == 1){
-                        rana.habla(pollo.sprite_pollo);
+                        rana.habla(pollo.sprite_pollo, pollo, &manzana);
                         ajolote.habla(pollo.sprite_pollo);
                         hongo.habla(pollo.sprite_pollo);
                     }
@@ -71,7 +71,7 @@ int main()
 
         float deltaTime = reloj.restart().asSeconds();
         pollo.update(deltaTime, &rana, &manzana, &objeto_oso);
-        rana.update(deltaTime, pollo, &manzana);
+        rana.update(deltaTime);
         ajolote.update(deltaTime, pollo, &manzana);
         oso.update(deltaTime, pollo, &objeto_oso);
         hongo.update(deltaTime, pollo, &manzana);

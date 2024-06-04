@@ -27,6 +27,11 @@ Rana::Rana(){
         cout << "Error al cargar imagen" << endl;
     }
 
+    if(!this->dialogo_3.loadFromFile("assets/ranafin.png"))
+    {
+        cout << "Error al cargar imagen" << endl;
+    }
+
     dialogos_index = 0;
     this->sprite_dialogo.setTexture(dialogo);
     this->sprite_dialogo.setScale(10,10);
@@ -39,16 +44,16 @@ Rana::Rana(){
 
     this->dialogos.push_back(dialogo);
     this->dialogos.push_back(dialogo_2);
+    this->dialogos2.push_back(dialogo_3);
 }
 
-void Rana::update(float deltaTime, Pollito &pollito, Objeto *objetoMision){
+void Rana::update(float deltaTime){
     currentTime += deltaTime;
     if (currentTime >= frameTime) {
         currentTime = 0.f;
         currentFrame = (currentFrame + 1) % idleFrames.size();
         sprite_rana.setTexture(idleFrames[currentFrame]); 
     }
-    this->mision(pollito, objetoMision);
 }
 
 float Rana::calcular_dist(Vector2f s1, Vector2f s2){
@@ -57,18 +62,37 @@ float Rana::calcular_dist(Vector2f s1, Vector2f s2){
     return sqrt(dist_x * dist_x + dist_y * dist_y);
 }
 
-void Rana::habla(Sprite sprite){
-if(calcular_dist(sprite.getPosition(), this->sprite_rana.getPosition()) <= 150){
-    this->hablando = true;
+void Rana::habla(Sprite sprite, Pollito &pollito, Objeto *objetoMision){
+    if(calcular_dist(sprite.getPosition(), this->sprite_rana.getPosition()) <= 150){
+        this->hablando = true;
+        this->dialogo_terminado = false;
+        this->mision(pollito, objetoMision);
+
+        if(!this->mision_completada || !this->primer_dialogo) {
+            // Mostrar diálogos normales si la mision no está completa
             if(this->dialogos_index < this->dialogos.size()){
                 cout << "dialogo num." << this->dialogos_index << endl;
                 hablar(this->dialogos_index);
-                this->dialogos_index = (this->dialogos_index + 1);
+                this->dialogos_index++;
+                this->dialogo_terminado = false;
             } else {
                 this->hablando = false;
                 this->dialogos_index = 0;
+                this->dialogo_terminado = true;
+                this->primer_dialogo = true;
             }
-        
+        } else {
+            // Mostrar diálogos de mision completada
+            if(this->dialogos_index < this->dialogos2.size()){
+                cout << "dialogo2 num." << this->dialogos_index << endl;
+                hablar2(this->dialogos_index);
+                this->dialogos_index++;
+            } else {
+                this->hablando = false;
+                this->dialogos_index = 0;
+                this->dialogo_terminado = true;
+            }
+        }
     } else {
         this->hablando = false;
     }
@@ -76,6 +100,11 @@ if(calcular_dist(sprite.getPosition(), this->sprite_rana.getPosition()) <= 150){
 
 void Rana::hablar(int dialogo_actual){
     this->sprite_dialogo.setTexture(dialogos[dialogo_actual]);
+    this->hablando = true;
+}
+
+void Rana::hablar2(int dialogo_actual){
+    this->sprite_dialogo.setTexture(dialogos2[dialogo_actual]);
     this->hablando = true;
 }
 
@@ -95,8 +124,9 @@ void Rana::mision(Pollito &pollito, Objeto *objetoMision){
 
         // Verificar si se encontró el objeto
         if (it != pollito.inventario.end()) {
-            // Eliminar el objeto del inventario
+            this->mision_completada = true;
             pollito.inventario.erase(it);
+            // Eliminar el objeto del inventario
             pollito.misiones_completas++;
 
             cout << "Objeto mision rana tomado" << endl;
