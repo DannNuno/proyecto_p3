@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "pollo.hpp"
+#include "npc.hpp"
 using namespace sf;
 using namespace std;
 
@@ -80,7 +81,7 @@ void Pollito::correr(){
     this->speed_y = speed_y*5;
 }
 
-void Pollito::update(float deltaTime, Rana *rana, Objeto *objeto1, Objeto *objeto2, Objeto *objeto3, Objeto *objeto4){
+void Pollito::update(float deltaTime, Rana *rana, Objeto *objeto1, Objeto *objeto2, Objeto *objeto3, Objeto *objeto4, bool menu_abierto, NPC *ajolote, NPC *oso, NPC *hongo){
     currentTime += deltaTime;
     //acumular tiempo desde el ultimo cuadro
     this->moviendose = false;
@@ -125,7 +126,7 @@ void Pollito::update(float deltaTime, Rana *rana, Objeto *objeto1, Objeto *objet
         this->correr();
     }
 
-    this->pausar(rana);
+    this->pausar(rana, menu_abierto, ajolote, oso, hongo);
 
     if (this->moviendose){
         this->mover();
@@ -180,8 +181,8 @@ void Pollito::mover_izq(){
     }
 }
 
-void Pollito::pausar(Rana *rana){
-    if(rana->hablando || this->inv_abierto){
+void Pollito::pausar(Rana *rana, bool menu_abierto, NPC *ajolote, NPC *oso, NPC *hongo){
+    if(rana->hablando || this->inv_abierto || menu_abierto || ajolote->hablando || oso->hablando || hongo->hablando){
         this->speed_x = 0;
         this->speed_y = 0;
         this->moviendose = false;

@@ -12,6 +12,17 @@ int main()
     RenderWindow window(VideoMode(1920, 1080), "La aventura mas kawaii");
     window.setFramerateLimit(60);
 
+    bool menu_abierto = true;
+
+    Texture menuTexture;
+    if(!menuTexture.loadFromFile("assets/inicio.png"))
+    {
+        cout << "Error al cargar imagen" << endl;
+    }
+    Sprite menu;
+    menu.setTexture(menuTexture);
+    menu.setScale(10,10);
+
     Mapa mapa;
     Pollito pollo;
     Rana rana;
@@ -65,11 +76,19 @@ int main()
                 pollo.cambiar_objactual();
             }
 
+            if(event.type == Event::KeyPressed){
+                if(Keyboard::isKeyPressed(Keyboard::Enter)){
+                    if(menu_abierto){
+                        menu_abierto = false;
+                    }
+                }
+            }
+
             
         }
 
         float deltaTime = reloj.restart().asSeconds();
-        pollo.update(deltaTime, &rana, &manzana, &objeto_oso, &manzana_azul, &manzana_amarilla);
+        pollo.update(deltaTime, &rana, &manzana, &objeto_oso, &manzana_azul, &manzana_amarilla, menu_abierto, &ajolote, &oso, &hongo);
         rana.update(deltaTime);
         ajolote.update(deltaTime);
         oso.update(deltaTime);
@@ -77,6 +96,7 @@ int main()
         mapa.cambiarmapa(&pollo.sprite_pollo);
         
         window.clear();
+
 
         window.draw(mapa.sprite_mapa);
         if(mapa.nivel == 1){
@@ -106,6 +126,10 @@ int main()
         oso.drawDialog(window);
         pollo.ver_inventario(window);
 
+        if(menu_abierto){
+            window.draw(menu);
+        }
+        
         window.display();
     }
 

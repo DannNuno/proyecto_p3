@@ -10,6 +10,7 @@ using namespace std;
 
 class Rana;
 class Objeto;
+class NPC;
 
 class Pollito{
     private:
@@ -49,13 +50,13 @@ class Pollito{
     Pollito();
     void mover();
     void correr();
-    void update(float deltaTime, Rana *rana, Objeto *objeto1, Objeto *objeto2, Objeto *objeto3, Objeto *objeto4);
+    void update(float deltaTime, Rana *rana, Objeto *objeto1, Objeto *objeto2, Objeto *objeto3, Objeto *objeto4, bool menu_abierto, NPC *ajolote, NPC *oso, NPC *hongo);
     // deltaTime se utiliza para que la animacion ocurra independientemente de los FPS, es el tiempo transcurrido desde el ultimo cuadro
     void idle_der();
     void idle_izq();
     void mover_der();
     void mover_izq();
-    void pausar(Rana *rana);
+    void pausar(Rana *rana, bool menu_abierto, NPC *ajolote, NPC *oso, NPC *hongo);
     void tomar_objeto(Objeto *objeto);
     void abrir_inv();
     void ver_inventario(RenderWindow &window);
