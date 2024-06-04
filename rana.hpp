@@ -43,6 +43,7 @@ class Rana{
     void drawDialog(RenderWindow &window);
     void mision(Pollito &pollo, Objeto *objetoMision);
     bool hablando = false;
+    bool dialogo_2_listo = false;
 
 };
 

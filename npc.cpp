@@ -193,6 +193,7 @@ void NPC::habla(Sprite sprite, Pollito &pollito, Objeto *objetoMision){
                 this->hablando = false;
                 this->dialogos_index = 0;
                 this->dialogo_terminado = true;
+                this->dialogo_2_listo = true;
             }
         }
     } else {

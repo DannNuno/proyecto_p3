@@ -45,6 +45,7 @@ class NPC{
     void mision(Pollito &pollo, Objeto *objetoMision);
     bool hablando = false;
     bool mision_completada = false;
+    bool dialogo_2_listo = false;
 
 };
 

@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <iostream>
 #include "pollo.hpp"
 #include "rana.hpp"
@@ -12,6 +13,16 @@ int main()
     RenderWindow window(VideoMode(1920, 1080), "La aventura mas kawaii");
     window.setFramerateLimit(60);
 
+    SoundBuffer musica;
+    if (!musica.loadFromFile("assets/music.wav")) {
+        cout << "error al cargar musica" << endl;
+    }
+
+    Sound sound;
+    sound.setBuffer(musica);
+    sound.play();
+    sound.setLoop(true);
+
     bool menu_abierto = true;
 
     Texture menuTexture;
@@ -22,6 +33,15 @@ int main()
     Sprite menu;
     menu.setTexture(menuTexture);
     menu.setScale(10,10);
+
+    Texture finTexture;
+    if(!finTexture.loadFromFile("assets/fin.png"))
+    {
+        cout << "Error al cargar imagen" << endl;
+    }
+    Sprite findeljuego;
+    findeljuego.setTexture(finTexture);
+    findeljuego.setScale(10,10);
 
     Mapa mapa;
     Pollito pollo;
@@ -37,7 +57,7 @@ int main()
     rana.sprite_rana.setPosition(800,600);
     manzana.sprite_objeto.setPosition(300,400);
     objeto_oso.sprite_objeto.setPosition(400,200);
-    manzana_azul.sprite_objeto.setPosition(800,100);
+    manzana_azul.sprite_objeto.setPosition(500,900);
     manzana_amarilla.sprite_objeto.setPosition(900,20);
     ajolote.sprite_npc.setPosition(600,800);
     hongo.sprite_npc.setPosition(500,300);
@@ -97,7 +117,6 @@ int main()
         
         window.clear();
 
-
         window.draw(mapa.sprite_mapa);
         if(mapa.nivel == 1){
             window.draw(rana.sprite_rana);
@@ -128,6 +147,10 @@ int main()
 
         if(menu_abierto){
             window.draw(menu);
+        }
+
+        if(pollo.misiones_completas == 4 && rana.dialogo_2_listo && ajolote.dialogo_2_listo && oso.dialogo_2_listo && hongo.dialogo_2_listo){
+            window.draw(findeljuego);
         }
         
         window.display();
